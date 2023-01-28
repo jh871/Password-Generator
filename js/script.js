@@ -91,73 +91,101 @@ var upperCasedCharacters = [
 
 //define passwordLength here to use in future functions
 let passwordLength = 0;
+let randomArray = [];
 // Function to prompt user for password options
 //confs return boolean values
 //all prompts go in here
 // should return what the user wants - user input
 
 
-// function getPasswordOptions() {
-//   passwordLength = parseInt(prompt("Please enter a number of characters for the length of the password between 8 and 128: "));
-//   if (passwordLength === "" || passwordLength === null) {
-//     alert("Please enter a number between 8 and 128");
-//     getPasswordOptions();
-//   } else if (passwordLength < 8) {
-//     alert("Password is too short, password needs to be at least 8 characters. \nPlease enter a number between 8 and 128");
-//     getPasswordOptions();
-//   } else if (passwordLength > 128) {
-//     alert("Password is too long, password needs to be no more than 128 characters. \nPlease enter a number between 8 and 128");
-//   getPasswordOptions();
-//   } else {
-//   console.log(passwordLength);
+function getPasswordOptions() {
+  passwordLength = parseInt(prompt("Please enter a number of characters for the length of the password between 8 and 128: "));
+  if (passwordLength === "" || passwordLength === null) {
+    alert("Please enter a number between 8 and 128");
+    getPasswordOptions();
+  } else if (passwordLength < 8) {
+    alert("Password is too short, password needs to be at least 8 characters. \nPlease enter a number between 8 and 128");
+    getPasswordOptions();
+  } else if (passwordLength > 128) {
+    alert("Password is too long, password needs to be no more than 128 characters. \nPlease enter a number between 8 and 128");
+  getPasswordOptions();
+  } else {
+  console.log(passwordLength);
+  concatenateOptions();
+  function concatenateOptions(){
+  let confLc = confirm("Does your password need to contain lower case letters?");
+  if (confLc === true) {
+    randomArray = randomArray.concat(lowerCasedCharacters);
+  };
+  let confUc = confirm("Does your password need to contain upper case letters?");
+  if (confUc === true) {
+    randomArray = randomArray.concat(upperCasedCharacters);
+  };
+  let confSpChars = confirm("Does your password need to contain special characters?");
+  if (confSpChars === true) {
+    randomArray = randomArray.concat(specialCharacters);
+  };
+  let confNums = confirm("Does your password need to contain numbers?");
+  if (confNums === true) {
+    randomArray = randomArray.concat(numericCharacters);
+  };
+  if (randomArray.length === 0) {
+    alert("You must have at least one character type in your password.");
+    concatenateOptions();
+  };
+  }}
+}
 
 
-  // let confLc = confirm("Does your password need to contain lower case letters?");
-  // let confUc = confirm("Does your password need to contain upper case letters?");
-  // let confSpChars = confirm("Does your password need to contain lower case letters?");
-  // let confNums = confirm("Does your password need to contain lower case letters?");
-//   }
-// }
-
-let i = 0;
-// getPasswordOptions(); //calling it to test - disabled for testing other bits
+getPasswordOptions(); //calling it to test - disabled for testing other bits
 // console.log(typeof passwordLength);
+
+
+console.log(randomArray);
+
+
+// concatenateOptions(confLc);
+// concatenateOptions(confUc);
+// concatenateOptions(confSpChars);
+// concatenateOptions(confNums);
 
 // Function for getting a random element from an array
 // function getRandom(arr) {
 // // write function to get random thing from array (Math.random)
 // // return userchoice as random
 // }
-let randomArray = upperCasedCharacters.concat(lowerCasedCharacters.concat(numericCharacters.concat(specialCharacters)));
-console.log(randomArray);
 
 
 
-let myVar = "";
-function getRandomChar(){
-  myVar = randomArray[Math.floor(Math.random() * randomArray.length)];
-  return myVar;
-}
-// console.log(getRandomChar()); //returns one random char from array
-// console.log(typeof getRandomChar()); //type of output is string
-
-
-// //function that joins newarray and getRandomChar
-//going to make an empty array and populate it with char
-const thisArray = new Array(8);
-
-function fillPw(){
-  for (i=0; i < 8; i++){
-    let char = getRandomChar();
-
-  thisArray[i] = char;
-}}
-fillPw()
-console.log("Your password is: " + thisArray);
 
 
 
-console.log(thisArray.join(""));
+
+// let myVar = "";
+// function getRandomChar(){
+//   myVar = randomArray[Math.floor(Math.random() * randomArray.length)];
+//   return myVar;
+// }
+// // console.log(getRandomChar()); //returns one random char from array
+// // console.log(typeof getRandomChar()); //type of output is string
+
+
+// // //function that joins newarray and getRandomChar
+// //going to make an empty array and populate it with char
+// const thisArray = new Array(8);
+
+// function fillPw(){
+//   for (let i=0; i < 8; i++){
+//     let char = getRandomChar();
+
+//   thisArray[i] = char;
+// }}
+// fillPw()
+// console.log("Your password is: " + thisArray);
+
+
+
+// console.log(thisArray.join(""));
 
 
 
@@ -174,6 +202,7 @@ console.log(thisArray.join(""));
 //push random letters into an array and then join them into a string
 
 
+// upperCasedCharacters.concat(lowerCasedCharacters.concat(numericCharacters.concat(specialCharacters)));
 
 
 
