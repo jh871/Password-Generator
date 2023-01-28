@@ -48,13 +48,14 @@ This application has an MIT License.
 -----
 ## Links
 
-
 ### URL for deployed application:
-
+https://jh871.github.io/Password-Generator/
 
 
 ### URL to GitHub repo:
+https://github.com/jh871/Password-Generator
 
 
 
 ## Screenshot of deployed application:
+![Screenshot of password generator](assets/ScreenshotforPasswordGenerator.png)
