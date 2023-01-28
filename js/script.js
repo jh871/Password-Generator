@@ -89,15 +89,14 @@ var upperCasedCharacters = [
 ];
 
 
-//define passwordLength here to use in future functions
-let passwordLength = 0;
-let passwordCharsArray = [];
-// Function to prompt user for password options
-//confs return boolean values
-//all prompts go in here
-// should return what the user wants - user input
+//initialise global variables; 
+let passwordLength = 0; //user input desired password length
+let possibleChars = []; //array to store possible password characters
+let passwordChars = []; //array to store chosen characters for password
+//arrays are let, not const, as will be modified depending on user options and random character generation.
 
 
+//Function to get user options for password and concatenate relevant character options into possibleChars
 function getPasswordOptions() {
   passwordLength = parseInt(prompt("Please enter a number of characters for the length of the password between 8 and 128: "));
     if (passwordLength === "" || passwordLength === null) {
@@ -110,69 +109,53 @@ function getPasswordOptions() {
       alert("Password is too long, password needs to be no more than 128 characters. \nPlease enter a number between 8 and 128");
     getPasswordOptions();
     } else {
-    console.log(passwordLength);
     concatenateOptions();
     function concatenateOptions(){
       let confLc = confirm("Does your password need to contain lower case letters?");
       if (confLc === true) {
-        passwordCharsArray = passwordCharsArray.concat(lowerCasedCharacters);
+        possibleChars = possibleChars.concat(lowerCasedCharacters);
       };
       let confUc = confirm("Does your password need to contain upper case letters?");
       if (confUc === true) {
-        passwordCharsArray = passwordCharsArray.concat(upperCasedCharacters);
+        possibleChars = possibleChars.concat(upperCasedCharacters);
       };
       let confSpChars = confirm("Does your password need to contain special characters?");
       if (confSpChars === true) {
-        passwordCharsArray = passwordCharsArray.concat(specialCharacters);
+        possibleChars = possibleChars.concat(specialCharacters);
       };
       let confNums = confirm("Does your password need to contain numbers?");
       if (confNums === true) {
-        passwordCharsArray = passwordCharsArray.concat(numericCharacters);
+        possibleChars = possibleChars.concat(numericCharacters);
       };
-      if (passwordCharsArray.length === 0) {
+      if (possibleChars.length === 0) {
         alert("You must have at least one character type in your password.");
         concatenateOptions();
       };
     }
   }
 }
-
 getPasswordOptions(); 
-// console.log(passwordCharsArray); - will check which characters are in the final array for future fuctions to choose from.
 
-
-// Function for getting a random element from an array - returns single character of type string
+// Function for getting a random element from an array - gets one random character from array of possible characters
 function getRandom(){
-  let oneChar = passwordCharsArray[Math.floor(Math.random() * passwordCharsArray.length)];
+  let oneChar = possibleChars[Math.floor(Math.random() * possibleChars.length)];
   return oneChar;
 }
-// getRandom() function will get called in next function
-// console.log(typeof getRandom()); //check type of output is string
+// getRandom() function will get called in generatePassword function
 
 
-//single character from getRandom is stored in new array of passwordChars strings - characters that the password is made up of.
-
-
-// Function to generate password with user input
-let passwordChars = new Array(); //array to store chosen characters for password
+// Function to generate password with user input - iterates through getRandom function as many times as user wanted password length to be, and then adds one character at a time to the passwordChars array to make up password content.  
+//The join function on return will make password a string wth no spaces. 
 function generatePassword() {
   for (let i=0; i < passwordLength; i++){
-  let char = getRandom();
-  passwordChars[i] = char;
-} //adds each randomly generated character to array for password
-return passwordChars.join("");
+    let char = getRandom();
+    passwordChars[i] = char;
+  } 
+  return passwordChars.join("");
 }
-// uses above two functions - needs to know user options and the random figures
-// returns generated password
-
-//user options are already used to generate the array for the getRandom function
-// generatePassword function only needs to run getRandom
-//iterations of loop are determined by user input of desired password length
 
 
-
-//clicking "Generate Password" button will generate new password from same options i.e. same length and with same types of characters; 
-// to generate password with different parameters, page can be refreshed.
+//generatePassword function is called when button below is clicked. 
 
 // Don't touch this bit, already works and we haven't learned it yet:
 // Get references to the #generate element
